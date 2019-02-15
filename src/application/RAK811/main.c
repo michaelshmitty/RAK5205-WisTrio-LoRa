@@ -82,19 +82,19 @@ int main( void )
 
         // NOTE(m): Manual configuration goes here.
         // NOTE(m): Device address
-        *(uint32_t *) &(g_lora_config->dev_addr[0]) = 0x48544C53;
+        *(uint32_t *) &(g_lora_config.dev_addr[0]) = 0x48544C53;
 
         // NOTE(m): Network session key
-        *(uint32_t *) &(g_lora_config->nwks_key[0])= 0x2B7E1516;
-        *(uint32_t *) &(g_lora_config->nwks_key[4])= 0x28AED2A6;
-        *(uint32_t *) &(g_lora_config->nwks_key[8])= 0xABF71588;
-        *(uint32_t *) &(g_lora_config->nwks_key[12]) = 0x09CF4F3C;
+        *(uint32_t *) &(g_lora_config.nwks_key[0])= 0x2B7E1516;
+        *(uint32_t *) &(g_lora_config.nwks_key[4])= 0x28AED2A6;
+        *(uint32_t *) &(g_lora_config.nwks_key[8])= 0xABF71588;
+        *(uint32_t *) &(g_lora_config.nwks_key[12]) = 0x09CF4F3C;
 
         // NOTE(m): Application session key
-        *(uint32_t *) &(g_lora_config->apps_key[0])= 0x2B7E1516;
-        *(uint32_t *) &(g_lora_config->apps_key[4])= 0x28AED2A6;
-        *(uint32_t *) &(g_lora_config->apps_key[8])= 0xABF71588;
-        *(uint32_t *) &(g_lora_config->apps_key[12]) = 0x09CF4F3C;
+        // *(uint32_t *) &(g_lora_config.apps_key[0])= 0x2B7E1516;
+        // *(uint32_t *) &(g_lora_config.apps_key[4])= 0x28AED2A6;
+        // *(uint32_t *) &(g_lora_config.apps_key[8])= 0xABF71588;
+        // *(uint32_t *) &(g_lora_config.apps_key[12]) = 0x09CF4F3C;
 
 
         // NOTE(m): Disable adaptive rate
