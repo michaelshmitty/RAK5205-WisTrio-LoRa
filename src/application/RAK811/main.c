@@ -81,15 +81,30 @@ int main( void )
 		rw_ReadUsrConfig();
 
         // NOTE(m): Manual configuration goes here.
-        g_lora_config.dev_addr[] = { 0x48, 0x54, 0x4C, 0x53 };
-        g_lora_config.nwks_key[] = { 0x2B, 0x7E, 0x15, 0x16, 0x28, 0xAE, 0xD2, 0xA6, 0xAB, 0xF7, 0x15,
-                                     0x88, 0x09, 0xCF, 0x4F, 0x3C };
-        g_lora_config.apps_key[] = { 0x2B, 0x7E, 0x15, 0x16, 0x28, 0xAE, 0xD2, 0xA6, 0xAB, 0xF7, 0x15,
-                                     0x88, 0x09, 0xCF, 0x4F, 0x3C };
+        // NOTE(m): Device address
+        *( uint32_t *)&(g_lora_config.dev_addr[0]) = 0x48544C53;
+
+        // NOTE(m): Network session key
+        *( uint32_t *)&(g_lora_config.nwks_key[0]) = 0x2B7E1516;
+        *( uint32_t *)&(g_lora_config.nwks_key[4]) = 0x28AED2A6;
+        *( uint32_t *)&(g_lora_config.nwks_key[8]) = 0xABF71588;
+        *( uint32_t *)&(g_lora_config.nwks_key[12]) = 0x09CF4F3C;
+
+        // NOTE(m): Application session key
+        *( uint32_t *)&(g_lora_config.apps_key[0]) = 0x2B7E1516;
+        *( uint32_t *)&(g_lora_config.apps_key[4]) = 0x28AED2A6;
+        *( uint32_t *)&(g_lora_config.apps_key[8]) = 0xABF71588;
+        *( uint32_t *)&(g_lora_config.apps_key[12]) = 0x09CF4F3C;
+
+        // NOTE(m): Disable adaptive rate
         g_lora_config.adr = false;
         // TODO(m): g_lora_config.tx_power;
         // TODO(m): g_lora_config.tx_pwr_level;
-        g_lora_config.join_mode[] = { 0xAB, 0xAA }; // ABP
+
+        // NOTE(m): ABP mode
+        g_lora_config.join_mode[0] = 0xAB;
+        g_lora_config.join_mode[1] = 0xAA };
+
         g_lora_config.app_interval = 120;
         g_lora_config.gps_stime = 60;
         g_lora_config.power_save = 1;
