@@ -86,17 +86,17 @@ int main( void )
 
         // NOTE(m): Network session key
         // 2B7E151628AED2A6ABF7158809CF4F3C
-        *(uint32_t *) &(g_lora_config.nwks_key[0])= 0x16157E2B;
-        *(uint32_t *) &(g_lora_config.nwks_key[4])= 0xA6D2AE28;
-        *(uint32_t *) &(g_lora_config.nwks_key[8])= 0x8815F7AB;
+        *(uint32_t *) &(g_lora_config.nwks_key[0]) = 0x16157E2B;
+        *(uint32_t *) &(g_lora_config.nwks_key[4]) = 0xA6D2AE28;
+        *(uint32_t *) &(g_lora_config.nwks_key[8]) = 0x8815F7AB;
         *(uint32_t *) &(g_lora_config.nwks_key[12]) = 0x3C4FCF09;
 
         // NOTE(m): Application session key
-        // *(uint32_t *) &(g_lora_config.apps_key[0])= 0x2B7E1516;
-        // *(uint32_t *) &(g_lora_config.apps_key[4])= 0x28AED2A6;
-        // *(uint32_t *) &(g_lora_config.apps_key[8])= 0xABF71588;
-        // *(uint32_t *) &(g_lora_config.apps_key[12]) = 0x09CF4F3C;
-
+        // 2B7E151628AED2A6ABF7158809CF4F3C
+        *(uint32_t *) &(g_lora_config.apps_key[0]) = 0x16157E2B;
+        *(uint32_t *) &(g_lora_config.apps_key[4]) = 0xA6D2AE28;
+        *(uint32_t *) &(g_lora_config.apps_key[8]) = 0x8815F7AB;
+        *(uint32_t *) &(g_lora_config.apps_key[12]) = 0x3C4FCF09;
 
         // NOTE(m): Disable adaptive rate
         g_lora_config.adr = false;
