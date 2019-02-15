@@ -14,7 +14,7 @@ Maintainer: Miguel Luis and Gregory Cristian
 */
 
 /*
-	*  MACRO DEFINED for different boards and on/off specific function 
+	*  MACRO DEFINED for different boards and on/off specific function
 */
 //#define  LORA_HF_BOARD
 //#define  TRACKERBOARD
@@ -38,23 +38,23 @@ extern char cli_buffer[];
 int main( void )
 {
     uart_config_t uart_config;
-	
- 		BoardInitMcu( );  
-	
+
+ 		BoardInitMcu( );
+
     if (read_partition(PARTITION_1, (char *)&uart_config, sizeof(uart_config)) < 0) {
         SET_UART_CONFIG_DEFAULT(uart_config);
-    } 
-    
+    }
+
     UartMcuInit(&Uart1, 1, UART_TX, UART_RX);
-    UartMcuConfig(&Uart1, RX_TX, uart_config.baudrate, 
+    UartMcuConfig(&Uart1, RX_TX, uart_config.baudrate,
                                       uart_config.wordLength,
                                       uart_config.stopBits,
                                       uart_config.parity,
                                       uart_config.flowCtrl);
-		
+
 
     e_printf("RAK5205_TrackerBoard software version:");
-		
+
     rw_GetVersion(cli_buffer);
     e_printf("%s\r\n", cli_buffer);
 
@@ -63,38 +63,52 @@ int main( void )
 
 		TimerInit(&atWaitTimer, atWaitTimerEvent);
 		TimerSetValue(&atWaitTimer, 1000 * 30);
-		
+
 		TimerInit(&Led1Timer, OnLed1TimerEvent);
 		TimerSetValue(&Led1Timer, 100);
 
 		TimerInit(&Led2Timer, OnLed2TimerEvent);
 		TimerSetValue(&Led2Timer, 100);
-		
+
 		TimerInit(&HIWDG_Timer, HIWDG_Timer_Event);
 		TimerSetValue(&HIWDG_Timer, 20*1000);
-		
+
 
 		TimerStart(&atWaitTimer);
-		
+
 		TimerStart(&Led1Timer);
-		
+
 		rw_ReadUsrConfig();
 
-		e_printf("Please Configurate parameters...\r\n");
-		while(1){
-			if(at_wait == false )
-				break;
-			if( 0 != getchar_loop()){
-				break;
-			}
-		}
+        // NOTE(m): Manual configuration goes here.
+        g_lora_config.dev_addr[] = { 0x48, 0x54, 0x4C, 0x53 };
+        g_lora_config.nwks_key[] = { 0x2B, 0x7E, 0x15, 0x16, 0x28, 0xAE, 0xD2, 0xA6, 0xAB, 0xF7, 0x15,
+                                     0x88, 0x09, 0xCF, 0x4F, 0x3C };
+        g_lora_config.apps_key[] = { 0x2B, 0x7E, 0x15, 0x16, 0x28, 0xAE, 0xD2, 0xA6, 0xAB, 0xF7, 0x15,
+                                     0x88, 0x09, 0xCF, 0x4F, 0x3C };
+        g_lora_config.adr = false;
+        // TODO(m): g_lora_config.tx_power;
+        // TODO(m): g_lora_config.tx_pwr_level;
+        g_lora_config.join_mode[] = { 0xAB, 0xAA }; // ABP
+        g_lora_config.app_interval = 120;
+        g_lora_config.gps_stime = 60;
+        g_lora_config.power_save = 1;
+
+		// e_printf("Please Configurate parameters...\r\n");
+		// while(1){
+		// 	if(at_wait == false )
+		// 		break;
+		// 	if( 0 != getchar_loop()){
+		// 		break;
+		// 	}
+		// }
 		e_printf("Configuration OK!\r\n");
-		
+
 	e_printf("app_interval = %u\r\n", g_lora_config.app_interval);
 	e_printf("gps_stime = %u\r\n", g_lora_config.gps_stime);
 	e_printf("msg_confirm = %u\r\n", g_lora_config.msg_confirm);
 	e_printf("power_save = %u\r\n", g_lora_config.power_save);
-  
+
   if( g_lora_config.power_save == 0){
 	    g_power_source = USB_POWER;
 	}
@@ -103,30 +117,30 @@ int main( void )
 	}
 
 	IsTxConfirmed =  g_lora_config.msg_confirm ? true : false;
-#endif	
-	
+#endif
+
 #ifdef TRACKERBOARD
-	DeviceState = DEVICE_STATE_INIT;		
-	LoRaWAN_loop();	
-#else 
+	DeviceState = DEVICE_STATE_INIT;
+	LoRaWAN_loop();
+#else
 	rw_InitLoRaWAN();
-#endif	
-	
-	GPIOIRQ_Enable();	
-	
-	BoardHiwdogInit();	
+#endif
+
+	GPIOIRQ_Enable();
+
+	BoardHiwdogInit();
 	TimerStart(&HIWDG_Timer);
-	
+
 	e_printf("Board Initialization OK!\r\n\r\n");
-		
-	while(1) 
+
+	while(1)
 	{
 
-		lora_cli_loop();				
+		lora_cli_loop();
 		BoardHIWDGRefresh();
 #ifdef TRACKERBOARD
-		LoRaWAN_loop();	
-#endif			
+		LoRaWAN_loop();
+#endif
 	}
 }
 
