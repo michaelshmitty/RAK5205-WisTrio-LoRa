@@ -82,52 +82,19 @@ int main( void )
 
         // NOTE(m): Manual configuration goes here.
         // NOTE(m): Device address
-        g_lora_config.dev_addr[0] = 0x48;
-        g_lora_config.dev_addr[1] = 0x54;
-        g_lora_config.dev_addr[2] = 0x4C;
-        g_lora_config.dev_addr[3] = 0x53;
+        *(uint32_t *) &g_lora_config.dev_addr[0] = 0x48544C53;
 
         // NOTE(m): Network session key
-        g_lora_config.nwks_key[0] = 0x2B;
-        g_lora_config.nwks_key[1] = 0x7E;
-        g_lora_config.nwks_key[2] = 0x15;
-        g_lora_config.nwks_key[3] = 0x16;
-
-        g_lora_config.nwks_key[4] = 0x28;
-        g_lora_config.nwks_key[5] = 0xAE;
-        g_lora_config.nwks_key[6] = 0xD2;
-        g_lora_config.nwks_key[7] = 0xA6;
-
-        g_lora_config.nwks_key[8] = 0xAB;
-        g_lora_config.nwks_key[9] = 0xF7;
-        g_lora_config.nwks_key[10] = 0x15;
-        g_lora_config.nwks_key[11] = 0x88;
-
-        g_lora_config.nwks_key[12] = 0x09;
-        g_lora_config.nwks_key[13] = 0xCF;
-        g_lora_config.nwks_key[14] = 0x4F;
-        g_lora_config.nwks_key[15] = 0x3C;
+        *(uint32_t *) &g_lora_config.nwks_key[0] = 0x2B7E1516;
+        *(uint32_t *) &g_lora_config.nwks_key[4] = 0x28AED2A6;
+        *(uint32_t *) &g_lora_config.nwks_key[8] = 0xABF71588;
+        *(uint32_t *) &g_lora_config.nwks_key[12] = 0x09CF4F3C;
 
         // NOTE(m): Application session key
-        g_lora_config.apps_key[0] = 0x2B;
-        g_lora_config.apps_key[1] = 0x7E;
-        g_lora_config.apps_key[2] = 0x15;
-        g_lora_config.apps_key[3] = 0x16;
-
-        g_lora_config.apps_key[4] = 0x28;
-        g_lora_config.apps_key[5] = 0xAE;
-        g_lora_config.apps_key[6] = 0xD2;
-        g_lora_config.apps_key[7] = 0xA6;
-
-        g_lora_config.apps_key[8] = 0xAB;
-        g_lora_config.apps_key[9] = 0xF7;
-        g_lora_config.apps_key[10] = 0x15;
-        g_lora_config.apps_key[11] = 0x88;
-
-        g_lora_config.apps_key[12] = 0x09;
-        g_lora_config.apps_key[13] = 0xCF;
-        g_lora_config.apps_key[14] = 0x4F;
-        g_lora_config.apps_key[15] = 0x3C;
+        *(uint32_t *) &g_lora_config.apps_key[0] = 0x2B7E1516;
+        *(uint32_t *) &g_lora_config.apps_key[4] = 0x28AED2A6;
+        *(uint32_t *) &g_lora_config.apps_key[8] = 0xABF71588;
+        *(uint32_t *) &g_lora_config.apps_key[12] = 0x09CF4F3C;
 
         // NOTE(m): Disable adaptive rate
         g_lora_config.adr = false;
@@ -140,7 +107,7 @@ int main( void )
 
         g_lora_config.app_interval = 120;
         g_lora_config.gps_stime = 60;
-        g_lora_config.power_save = 1;
+        g_lora_config.power_save = 0;
 
 		// e_printf("Please Configurate parameters...\r\n");
 		// while(1){
