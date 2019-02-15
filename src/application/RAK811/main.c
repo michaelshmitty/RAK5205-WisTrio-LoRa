@@ -103,7 +103,7 @@ int main( void )
 
         // NOTE(m): ABP mode
         g_lora_config.join_mode[0] = 0xAB;
-        g_lora_config.join_mode[1] = 0xAA };
+        g_lora_config.join_mode[1] = 0xAA;
 
         g_lora_config.app_interval = 120;
         g_lora_config.gps_stime = 60;
