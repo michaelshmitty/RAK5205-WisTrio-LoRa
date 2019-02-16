@@ -81,74 +81,18 @@ int main( void )
 		rw_ReadUsrConfig();
 
         // NOTE(m): Manual configuration goes here.
-        // NOTE(m): Device address
-        *(uint32_t *) &(g_lora_config.dev_addr[0]) = 0x48544C53;
-
-        // NOTE(m): Network session key
-        // 2B7E151628AED2A6ABF7158809CF4F3C
-        g_lora_config.nwks_key[0] = 0x2B;
-        g_lora_config.nwks_key[1] = 0x7E;
-        g_lora_config.nwks_key[2] = 0x15;
-        g_lora_config.nwks_key[3] = 0x16;
-
-        g_lora_config.nwks_key[4] = 0x28;
-        g_lora_config.nwks_key[5] = 0xAE;
-        g_lora_config.nwks_key[6] = 0xD2;
-        g_lora_config.nwks_key[7] = 0xA6;
-
-        g_lora_config.nwks_key[8] = 0xAB;
-        g_lora_config.nwks_key[9] = 0xF7;
-        g_lora_config.nwks_key[10] = 0x15;
-        g_lora_config.nwks_key[11] = 0x88;
-
-        g_lora_config.nwks_key[12] = 0x09;
-        g_lora_config.nwks_key[13] = 0xCF;
-        g_lora_config.nwks_key[14] = 0x4F;
-        g_lora_config.nwks_key[15] = 0x3C;
-
-        // NOTE(m): Application session key
-        // 2B7E151628AED2A6ABF7158809CF4F3C
-        g_lora_config.apps_key[0] = 0x2B;
-        g_lora_config.apps_key[1] = 0x7E;
-        g_lora_config.apps_key[2] = 0x15;
-        g_lora_config.apps_key[3] = 0x16;
-
-        g_lora_config.apps_key[4] = 0x28;
-        g_lora_config.apps_key[5] = 0xAE;
-        g_lora_config.apps_key[6] = 0xD2;
-        g_lora_config.apps_key[7] = 0xA6;
-
-        g_lora_config.apps_key[8] = 0xAB;
-        g_lora_config.apps_key[9] = 0xF7;
-        g_lora_config.apps_key[10] = 0x15;
-        g_lora_config.apps_key[11] = 0x88;
-
-        g_lora_config.apps_key[12] = 0x09;
-        g_lora_config.apps_key[13] = 0xCF;
-        g_lora_config.apps_key[14] = 0x4F;
-        g_lora_config.apps_key[15] = 0x3C;
-
-        // NOTE(m): Disable adaptive rate
-        g_lora_config.adr = false;
-        // TODO(m): g_lora_config.tx_power;
-        // TODO(m): g_lora_config.tx_pwr_level;
-
-        // NOTE(m): ABP mode
-        g_lora_config.join_mode[0] = 0xAB;
-        g_lora_config.join_mode[1] = 0xAA;
-
         g_lora_config.app_interval = 120;
         g_lora_config.gps_stime = 60;
         g_lora_config.power_save = 1;
 
-		// e_printf("Please Configurate parameters...\r\n");
-		// while(1){
-		// 	if(at_wait == false )
-		// 		break;
-		// 	if( 0 != getchar_loop()){
-		// 		break;
-		// 	}
-		// }
+		e_printf("Please Configurate parameters...\r\n");
+		while(1){
+			if(at_wait == false )
+				break;
+			if( 0 != getchar_loop()){
+				break;
+			}
+		}
 		e_printf("Configuration OK!\r\n");
 
 	e_printf("app_interval = %u\r\n", g_lora_config.app_interval);
