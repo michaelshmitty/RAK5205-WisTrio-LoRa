@@ -83,7 +83,7 @@ int main( void )
         // NOTE(m): Manual configuration goes here.
         g_lora_config.app_interval = 120;
         g_lora_config.gps_stime = 60;
-        g_lora_config.power_save = 1;
+        g_lora_config.power_save = 0;
 
 		e_printf("Please Configurate parameters...\r\n");
 		while(1){
